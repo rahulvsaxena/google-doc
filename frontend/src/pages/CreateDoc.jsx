@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import logo from '../components/Logo/logo.svg';
@@ -26,9 +26,9 @@ const CreateDoc = () => {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="d-flex w-100 justify-content-between align-items-center">
     <div class="d-flex align-items-center">
-      <a class="navbar-brand" href="#">
+    <Link class="navbar-brand">
         <img src={logo} width="36" height="36" class="d-inline-block align-top ms-3" alt=""/>
-      </a>
+      </Link>
       <ul class="navbar-nav">
         <li class="nav-item active">
           <input class="form-control" type="text" placeholder="Document Name" value={title} onChange={(e) => setTitle(e.target.value)} />
