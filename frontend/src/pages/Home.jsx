@@ -8,7 +8,7 @@ const Home = () => {
 const [docs, setDocs] = useState([]);
 useEffect(() => {
   axios
-    .get('http://localhost:5555/doc')
+    .get('https://google-doc-backend-9237.onrender.com/doc')
     .then((response) => {
       setDocs(response.data.data);
     })

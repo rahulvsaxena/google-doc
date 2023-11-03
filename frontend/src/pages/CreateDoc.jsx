@@ -14,7 +14,7 @@ const CreateDoc = () => {
 
   const handleSaveDoc = () => {
     const data = {title, userData};
-    axios.post('http://localhost:5555/doc', data)
+    axios.post('https://google-doc-backend-9237.onrender.com/doc', data)
       .then(navigate('/'))
       .catch((error) => {
         console.log(error);

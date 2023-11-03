@@ -14,7 +14,7 @@ const EditDoc = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5555/doc/${id}`)
+    axios.get(`https://google-doc-backend-9237.onrender.com/doc/${id}`)
       .then((response) => {
         setUserData(response.data.userData);
         setTitle(response.data.title);
@@ -30,7 +30,7 @@ const EditDoc = () => {
     };
 
     axios
-      .put(`http://localhost:5555/doc/${id}`, data)
+      .put(`https://google-doc-backend-9237.onrender.com/doc/${id}`, data)
       .then(() => {navigate('/');})
       .catch((error) => {console.log(error);});
   };
