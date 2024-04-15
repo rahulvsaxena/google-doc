@@ -8,9 +8,9 @@ const DeleteDoc = () => {
 
   const handleDeleteDoc = () => {
     axios
-      .delete(`https://google-doc-backend-9237.onrender.com/doc/${id}`)
+      .delete(`http://localhost:8080/doc/${id}`)
       .then(() => {
-        navigate('/');
+        navigate('/doc/home');
       })
       .catch((error) => {
         console.log(error);

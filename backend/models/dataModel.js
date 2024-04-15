@@ -8,6 +8,9 @@ const docSchema = mongoose.Schema(
     },
     userData: {
       type: String
+    },
+    userId: {
+        type: String
     }
   },
   {

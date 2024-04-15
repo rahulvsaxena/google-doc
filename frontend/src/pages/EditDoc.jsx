@@ -5,33 +5,34 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import logo from '../components/Logo/logo.svg';
 import { Link } from 'react-router-dom';
+import {modules} from '../components/quillModule/modules.js';
 
 
 const EditDoc = () => {
-  const [title, setTitle] = useState('');
-  const [userData, setUserData] = useState('');
+  const [title, setTitle] = useState("");
+  const [userData, setUserData] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`https://google-doc-backend-9237.onrender.com/doc/${id}`)
+    axios
+    .get(`http://localhost:8080/doc/${id}`)
       .then((response) => {
+        console.log(response.data);
         setUserData(response.data.userData);
         setTitle(response.data.title);
       }).catch((error) => {
         console.log(error);
       });
   }, [id]);
-
   const handleEditDoc = () => {
     const data = {
       title,
       userData,
     };
-
     axios
-      .put(`https://google-doc-backend-9237.onrender.com/doc/${id}`, data)
-      .then(() => {navigate('/');})
+      .put(`http://localhost:8080/doc/${id}`,data)
+      .then(() => {navigate('/doc/home');})
       .catch((error) => {console.log(error);});
   };
 
@@ -54,7 +55,7 @@ const EditDoc = () => {
     </form>
   </div>
 </nav>
-    <ReactQuill theme="snow" value={userData} onChange={setUserData}/>
+<ReactQuill theme="snow" value={userData} onChange={setUserData} modules={modules}/>
 </>
   );
 };

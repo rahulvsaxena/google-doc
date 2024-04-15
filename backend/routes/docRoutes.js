@@ -4,6 +4,7 @@ import { Doc } from '../models/dataModel.js';
 const router = express.Router();
 
 router.post('/', async (request, response) => {
+
   try {
     if (!request.body.title){
       return response.status(400).send({
@@ -13,6 +14,7 @@ router.post('/', async (request, response) => {
     const newDoc = {
       title: request.body.title,
       userData: request.body.userData,
+      userId: Object.keys(request.cookies)[0]
     };
     const doc = await Doc.create(newDoc);
     return response.status(201).send(doc);
@@ -23,10 +25,11 @@ router.post('/', async (request, response) => {
   }
 });
 
-
 router.get('/', async (request, response) => {
   try {
-    const docs = await Doc.find({});
+    const userId = Object.keys(request.cookies)[0];
+    console.log(userId);
+    const docs = await Doc.find({userId: userId});
     return response.status(200).json({
       count: docs.length,
       data: docs,

@@ -1,25 +1,30 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MdCreate, MdDelete } from 'react-icons/md';
+import { MdCreate, MdDelete, MdMoreVert } from 'react-icons/md';
 
 const DocsCard = ({ docs }) => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleDropdown = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  }
+
   return (
     <div className="container">
       <div className="row">
-        {docs.map((doc) => (
-          <div className="col-sm-3 d-flex align-items-stretch" style={{marginTop:'1rem', marginBottom: '1rem'}}>
-            <div className="card" style={{width: '100%'}}>
-              <div className="card-body">
-                <h5 className="card-title">{doc.title}</h5>
-              </div>
-              <div style={{marginTop: 'auto'}}>
-                <Link to={`/doc/edit/${doc._id}`} style={{ marginLeft: '100px' ,marginRight: '20px'}}>
-                  <MdCreate size={20} />
-                </Link>
-                <Link to={`/doc/delete/${doc._id}`} style={{ color: 'red' }}>
-                  <MdDelete size={20} />
-                </Link>
-              </div>
+        {docs.map((doc, index) => (
+          <div className="col-sm-12 d-flex align-items-center" style={{marginTop:'1rem', marginBottom: '1rem'}}>
+            <h6 style={{marginLeft:'21.4%',marginRight: '15.3%', width: '200px', fontSize: '13px'}}>{doc.title}</h6>
+            <p style={{marginRight: '10.2%', fontSize: '13px'}}>{new Date(doc.createdAt).toLocaleDateString()}</p>
+            <div>
+              <MdMoreVert size={20} onClick={() => toggleDropdown(index)} />
+              {activeIndex === index && (
+                <div className="dropdown-menu show" aria-labelledby="dropdownMenuLink">
+                  <Link className="dropdown-item" to={`/doc/edit/${doc._id}`}>Edit</Link>
+                  <Link className="dropdown-item" to={`/doc/delete/${doc._id}`}>Delete</Link>
+                </div>
+              )}
             </div>
           </div>
         ))}

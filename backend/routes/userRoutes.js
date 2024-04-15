@@ -1,5 +1,5 @@
 import express from "express";
-import { signup, login, logout } from "../controllers/auth-controller";
+import {signup, login} from "../controllers/auth-controller.js";
 // import { getUser } from "../controllers/user-controller";
 // import { refreshToken } from "../middlewares/refreshToken";
 // import verifyToken from "../middlewares/verifyToken";

@@ -4,7 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import logo from '../components/Logo/logo.svg';
-
+import './CreateDoc.css';
+import { modules } from '../components/quillModule/modules';
+axios.defaults.withCredentials = true;
 
 const CreateDoc = () => {
 
@@ -14,8 +16,8 @@ const CreateDoc = () => {
 
   const handleSaveDoc = () => {
     const data = {title, userData};
-    axios.post('https://google-doc-backend-9237.onrender.com/doc', data)
-      .then(navigate('/'))
+    axios.post('http://localhost:8080/doc',data,{withCredentials: true})
+      .then(navigate('/doc/home'))
       .catch((error) => {
         console.log(error);
       });
@@ -40,7 +42,7 @@ const CreateDoc = () => {
     </form>
   </div>
 </nav>
-    <ReactQuill theme="snow" value={userData} onChange={setUserData}/>
+    <ReactQuill theme="snow" value={userData} onChange={setUserData} modules={modules}/>
 </>
   );
 };

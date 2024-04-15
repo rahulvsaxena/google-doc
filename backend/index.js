@@ -7,14 +7,13 @@ import mongoose from 'mongoose';
 import docRoutes from './routes/docRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 const app = express();
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.json());
-
-app.use(cors());
 
 app.get('/',(req,res) => {
   res.send("Backend of Google Docs, By Rahul Saxena");

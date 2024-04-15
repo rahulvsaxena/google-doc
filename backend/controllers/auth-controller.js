@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 
-exports.signup = async (req, res) => {
+export const signup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
@@ -35,7 +35,7 @@ exports.signup = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
 
   // CHECKING IF THE USER ALREADY EXISTS
@@ -62,12 +62,12 @@ exports.login = async (req, res) => {
 
   // CREATING A TOKEN
   const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: "30s",
+    expiresIn: "3600s",
   });
 
   res.cookie(String(existingUser.id), token, {
     path: "/",
-    expiresIn: new Date(Date.now() + 1000 * 30),
+    expiresIn: new Date(Date.now() + 1000 * 3600),
     httpOnly: true,
     sameSite: "lax",
   });
@@ -75,17 +75,17 @@ exports.login = async (req, res) => {
   return res.status(200).json({ message: "Sucessfully logged in " });
 };
 
-exports.logout = async (req, res) => {
-  const cookies = req.headers.cookie;
-  const prevToken = cookies.split("=")[1];
-  if (!prevToken) {
-    return res.status(404).json({ message: "No token found" });
-  }
-  jwt.verify(String(prevToken), process.env.JWT_SECRET_KEY, (error, user) => {
-    if (error) {
-      return res.status(400).json({ message: "Invalid token" });
-    }
-    res.clearCookie(String(user.id));
-    return res.status(200).json({ message: "Successfully logged out" });
-  });
-};
+// exports.logout = async (req, res) => {
+//   const cookies = req.headers.cookie;
+//   const prevToken = cookies.split("=")[1];
+//   if (!prevToken) {
+//     return res.status(404).json({ message: "No token found" });
+//   }
+//   jwt.verify(String(prevToken), process.env.JWT_SECRET_KEY, (error, user) => {
+//     if (error) {
+//       return res.status(400).json({ message: "Invalid token" });
+//     }
+//     res.clearCookie(String(user.id));
+//     return res.status(200).json({ message: "Successfully logged out" });
+//   });
+// };

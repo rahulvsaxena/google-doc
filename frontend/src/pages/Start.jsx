@@ -1,8 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-
-
-
+import { useNavigate } from 'react-router-dom';
 const Start = () => {
     const navigate = useNavigate();
     const userLogin=()=>{
