@@ -11,7 +11,7 @@ const Signup = () => {
     const navigate=useNavigate();
     const handleSignUp = async (e) => {
         try {
-          await axios.post("http://localhost:8080/user/signup", {
+          await axios.post("https://google-doc-256b.onrender.com/user/signup", {
             name,
             email,
             password,
