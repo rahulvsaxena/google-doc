@@ -11,6 +11,7 @@ const Login = () => {
     const navigate=useNavigate();
 
     const handleLogin =async() => {
+        console.log("login started");
         try {
           await axios.post("https://google-doc-256b.onrender.com/user/login", {email,password},{withCredentials: true});
           navigate("/doc/home");
