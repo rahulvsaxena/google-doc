@@ -12,7 +12,7 @@ const Login = () => {
 
     const handleLogin =async() => {
         try {
-          await axios.post("http://localhost:8080/user/login", {email,password},{withCredentials: true});
+          await axios.post("https://google-doc-256b.onrender.com/user/login", {email,password},{withCredentials: true});
           navigate("/doc/home");
           console.log("Login successful!");
 
