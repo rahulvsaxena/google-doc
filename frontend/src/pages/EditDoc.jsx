@@ -16,7 +16,7 @@ const EditDoc = () => {
 
   useEffect(() => {
     axios
-    .get(`http://localhost:8080/doc/${id}`)
+    .get(`https://google-doc-256b.onrender.com/doc/${id}`)
       .then((response) => {
         console.log(response.data);
         setUserData(response.data.userData);
