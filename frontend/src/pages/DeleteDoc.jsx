@@ -8,7 +8,7 @@ const DeleteDoc = () => {
 
   const handleDeleteDoc = () => {
     axios
-      .delete(`http://localhost:8080/doc/${id}`)
+      .delete(`https://google-doc-256b.onrender.com/doc/${id}`)
       .then(() => {
         navigate('/doc/home');
       })
