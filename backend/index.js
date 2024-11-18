@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 const mongoDBURL = process.env.mongoDBURL;
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 import mongoose from 'mongoose';
 import docRoutes from './routes/docRoutes.js';
 import userRoutes from './routes/userRoutes.js';
