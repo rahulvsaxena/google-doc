@@ -10,7 +10,7 @@ const Home = () => {
   const [docs, setDocs] = useState([]);
   useEffect(() => {
     axios
-      .get('http://localhost:8080/doc',{withCredentials: true})
+      .get('https://google-doc-256b.onrender.com/doc',{withCredentials: true})
       .then((response) => {
         setDocs(response.data.data);
       })
