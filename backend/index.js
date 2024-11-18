@@ -10,7 +10,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 const app = express();
-app.use(cors({ origin: "https://google-8jrkldxrh-rahul-saxenas-projects.vercel.app", credentials: true }));
+app.use(cors({ origin: "https://google-31urntxo6-rahul-saxenas-projects.vercel.app/", credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.json());
